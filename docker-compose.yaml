@@ -1,8 +1,15 @@
 version: "3.2"
+
+volumes:
+    mysql_data:
+
 services:
   mysql_main_db:
     build: ./mysql
     container_name: allo_unit_test
+    restart: always
     env_file: ./mysql.env
+    volumes:
+      - mysql_data:/var/lib/mysql
     ports:
       - 127.0.0.2:3306:3306

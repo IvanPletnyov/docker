@@ -20,7 +20,6 @@ services:
         restart: always
         environment:
             XDEBUG_CONFIG: "remote_port=9001"
-            PHP_IDE_CONFIG: "serverName=magento2"
         volumes:
             - ./php/config/php.ini:/usr/local/etc/php/php.ini
             - ./project/:/var/www/magento2

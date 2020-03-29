@@ -25,6 +25,12 @@ services:
             - ./project/:/var/www/magento2
         networks:
             - magento2-network
+    magento2_mysql:
+        image: mysql:5.6
+        volumes:
+            - ./mysql/extracted/:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
 networks:
     magento2-network:
         driver: bridge
@@ -32,11 +38,3 @@ networks:
             driver: default
             config:
                 - subnet: 192.168.220.0/28
-#    mysql:
-#        image: mysql:5.7
-#        volumes:
-#            - ./docker/mysql/data:/var/lib/mysql
-#        environment:
-#            MYSQL_ROOT_PASSWORD: root
-#        networks:
-#            - backend

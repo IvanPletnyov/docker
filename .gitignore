@@ -1,2 +1,6 @@
 /.idea/
 /nginx/log/
+magento/m2install
+docker-compose.yaml
+/nginx/config/magento2.conf
+/magento/m2install.php

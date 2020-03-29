@@ -2,6 +2,7 @@ version: '3.3'
 services:
     magento2_nginx:
         image: nginx
+        container_name: magento2_nginx
         restart: always
         ports:
             - 80:80
@@ -10,27 +11,36 @@ services:
         volumes:
             - ./nginx/config/:/etc/nginx/conf.d
             - ./nginx/log/:/var/log/nginx/
-            - ./project/:/var/www/magento2
+            - {Path to dir with project}:/var/www/magento2
         networks:
             magento2-network:
                 aliases:
                     - dev.m2test.com
     magento2_php:
         build: ./php
+        container_name: magento2_php
         restart: always
         environment:
             XDEBUG_CONFIG: "remote_port=9001"
+            PHP_IDE_CONFIG: "serverName=magento2"
         volumes:
+            - ./magento/m2install.php:/usr/local/bin/m2install
             - ./php/config/php.ini:/usr/local/etc/php/php.ini
-            - ./project/:/var/www/magento2
+            - {Path to dir with project}:/var/www/magento2
         networks:
             - magento2-network
     magento2_mysql:
         image: mysql:5.6
+        container_name: magento2_mysql
+        restart: always
+        ports:
+            - 3307:3306
+        env_file:
+            - ./mysql/env
         volumes:
             - ./mysql/extracted/:/var/lib/mysql
-        environment:
-            MYSQL_ROOT_PASSWORD: root
+        networks:
+            - magento2-network
 networks:
     magento2-network:
         driver: bridge

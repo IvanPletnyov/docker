@@ -1,7 +1,5 @@
-# Example configuration:
 upstream fastcgi_backend {
-    server  magento2_php:9000;
-    server   unix:/var/run/php/php7.0-fpm.sock;
+    server magento2_php:9000;
 }
 
 server {

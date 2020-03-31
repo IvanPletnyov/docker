@@ -1,4 +1,4 @@
-/.idea/
+/.idea
 /nginx/log/
 magento/m2install
 docker-compose.yaml

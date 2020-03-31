@@ -13,9 +13,7 @@ services:
             - ./nginx/log/:/var/log/nginx/
             - {Path to dir with project}:/var/www/magento2
         networks:
-            magento2-network:
-                aliases:
-                    - dev.m2test.com
+            - magento2-network
     magento2_php:
         build: ./php
         container_name: magento2_php
@@ -30,13 +28,13 @@ services:
         networks:
             - magento2-network
     magento2_mysql:
-        image: mysql:5.6
+        image: mysql:5.6.40
         container_name: magento2_mysql
         restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: root
         ports:
             - 3307:3306
-        env_file:
-            - ./mysql/env
         volumes:
             - ./mysql/extracted/:/var/lib/mysql
         networks:

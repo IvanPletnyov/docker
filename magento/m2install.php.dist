@@ -36,7 +36,7 @@ class MagentoInstall
      *
      * @var array
      */
-    private $configurations = [
+    private $storeConfigurations = [
         'admin/security/admin_account_sharing' => 1,
         'admin/security/session_lifetime' => 9000,
         'admin/security/min_time_between_password_reset_requests' => 0,
@@ -215,7 +215,7 @@ class MagentoInstall
     private function setConfigurations(): void
     {
         $this->message('Start set configurations.');
-        foreach ($this->configurations as $confPath => $confValue) {
+        foreach ($this->storeConfigurations as $confPath => $confValue) {
             $confValue = is_numeric($confValue) ? (int)$confValue : "$confValue";
             $this->message("=====> Set config {$confPath} with value {$confValue}", true);
             exec("php {$this->getRootMagentoDirPath()}/bin/magento config:set {$confPath} {$confValue}");

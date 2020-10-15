@@ -184,6 +184,8 @@ class MagentoInstall
             '--use-rewrites=1',
             '--cleanup-database',
             '--backend-frontname=admin',
+            '--elasticsearch-host=magento2_elasticsearch',
+            '--elasticsearch-port=9200',
         ];
         exec(sprintf(
             "php {$this->getRootMagentoDirPath()}/bin/magento setup:install %s",

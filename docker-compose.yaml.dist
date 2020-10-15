@@ -39,6 +39,21 @@ services:
             - ./mysql/extracted/:/var/lib/mysql
         networks:
             - magento2-network
+    magento2_elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.8.1
+        container_name: magento2_elasticsearch
+        environment:
+            - bootstrap.memory_lock=true
+            - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+            - transport.host=127.0.0.1
+        ulimits:
+            memlock:
+                soft: -1
+                hard: -1
+        ports:
+            - 9200:9200
+        networks:
+            - magento2-network
 networks:
     magento2-network:
         driver: bridge

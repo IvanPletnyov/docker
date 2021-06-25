@@ -6,10 +6,12 @@ services:
         restart: always
         ports:
             - 80:80
+            - 443:443
         depends_on:
             - magento2_php
         volumes:
             - ./nginx/config/:/etc/nginx/conf.d
+            - ./certificate/:/etc/nginx/ssl
             - ./nginx/log/:/var/log/nginx/
             - {Path to dir with project}:/var/www/magento2
         networks:

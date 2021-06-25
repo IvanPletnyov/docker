@@ -2,6 +2,6 @@
 
 mkdir certificate
 
-openssl req -new -newkey rsa:4096 -nodes \
-    -keyout certificate/nginx-selfsigned.key -out certificate/nginx-selfsigned.crt \
-    -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=www.example.com"
+openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
+-subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=www.example.com" \
+-keyout certificate/nginx-selfsigned.key -out certificate/nginx-selfsigned.crt

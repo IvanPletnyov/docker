@@ -42,6 +42,9 @@ class MagentoInstall
         'admin/security/min_time_between_password_reset_requests' => 0,
         'system/smtp/disable' => 1,
         'cms/wysiwyg/enabled' => 'disabled',
+        'web/secure/base_url' => '',
+        'web/secure/use_in_frontend' => '1',
+        'web/secure/use_in_adminhtml' => '1',
     ];
 
     /**
